@@ -1,0 +1,19 @@
+// ============================================================
+// 🧩 EnvConfig — Environment configuration
+// ============================================================
+import "dotenv/config";
+import envSchema from "@/validators/env.validator.js";
+import validate from "@/lib/validate.lib.js";
+
+// ------------------------------------------------------
+// validateEnv{} — Validates environment variables
+// ------------------------------------------------------
+const envConfig = {
+  PORT: process.env.PORT,
+  NODE_ENV: process.env.NODE_ENV,
+};
+
+// Validate and export the environment configuration
+const config = validate(envSchema, envConfig);
+
+export default config;
