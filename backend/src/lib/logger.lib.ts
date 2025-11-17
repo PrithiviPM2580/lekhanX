@@ -5,6 +5,7 @@
 import winston from "winston";
 import chalk from "chalk";
 import path from "node:path";
+import fs from "node:fs";
 import config from "@/config/env.config.js";
 
 // ------------------------------------------------------
@@ -21,8 +22,11 @@ const { combine, timestamp, printf } = winston.format;
 //  Logger transports array
 const transports: winston.transport[] = [];
 
-// Log directory path
+// Log directory path and create if it doesn't exist
 const logDir = path.join(process.cwd(), "logs");
+if (!fs.existsSync(logDir)) {
+  fs.mkdirSync(logDir);
+}
 
 // ------------------------------------------------------
 // 2️⃣ Loggger custom format
@@ -37,7 +41,7 @@ const customFormat = combine(
     const { timestamp, level, message, label, ...meta } = info as LogInfo;
 
     // Format label and metadata
-    const labelStr = label ? `[${label}] ` : "";
+    const labelStr = label ? `${label}` : "";
 
     // Clean metadata: only include string keys
     const cleanMeta = Object.fromEntries(
@@ -63,13 +67,13 @@ const customFormat = combine(
           level.toUpperCase()
         )}] [${chalk.cyanBright("APP")}: ${chalk.red(
           labelStr
-        )}]: ${chalk.greenBright(message)} ${chalk.redBright(metaStr)}`;
+        )}]: ${chalk.redBright(message)} ${chalk.redBright(metaStr)}`;
       case "warn":
         return `🟡 ${chalk.gray(timestamp)} [${chalk.yellow(
           level.toUpperCase()
         )}] [${chalk.cyanBright("APP")}: ${chalk.yellow(
           labelStr
-        )}]: ${chalk.greenBright(message)} ${chalk.yellowBright(metaStr)}`;
+        )}]: ${chalk.yellowBright(message)} ${chalk.yellowBright(metaStr)}`;
       default:
         return `${chalk.gray(timestamp)} [${chalk.green(
           level.toUpperCase()
@@ -88,7 +92,7 @@ if (config.NODE_ENV !== "production" && config.NODE_ENV !== "test") {
   transports.push(
     new winston.transports.Console({
       format: customFormat,
-      level: "info",
+      level: config.LOG_LEVEL,
     })
   );
 } else {

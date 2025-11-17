@@ -3,6 +3,7 @@
 // ============================================================
 
 import { z } from "zod";
+import APIError from "@/lib/api-error.lib.js";
 
 // ------------------------------------------------------
 // validate() — Validates data against a Zod schema
@@ -20,8 +21,11 @@ const validate = <T extends z.ZodTypeAny>(
       field: issue.path.join("."),
       mesage: issue.message,
     }));
-    // Throw a detailed validation error
-    throw new Error(`Validation Error: ${JSON.stringify(issues)}`);
+    // Throw a structured API error with validation details
+    throw new APIError(400, "Validation Error", {
+      type: "ValidationError",
+      details: issues,
+    });
   }
 
   // Return the validated data
