@@ -5,7 +5,8 @@ node_modules/
 dist/
 
 # Ignore environment variable files
-.env
+.env.development
+.env.production
 
 # Ignore system files and IDE configurations
 .DS_Store
