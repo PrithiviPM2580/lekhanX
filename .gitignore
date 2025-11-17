@@ -1,0 +1,21 @@
+# Ignore node modules
+node_modules/
+
+# Ignore build output
+dist/
+
+# Ignore environment variable files
+.env
+
+# Ignore system files and IDE configurations
+.DS_Store
+.vscode/
+.idea/
+
+# Ignore logs and debug files
+*.log
+coverage/
+npm-debug.log*
+.pnpm-debug.log*
+*.tsbuildinfo
+  
