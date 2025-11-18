@@ -5,7 +5,7 @@
 class APIError extends Error {
   public readonly statusCode: number; // HTTP status code
   public readonly success: boolean; // Indicates if the operation was successful
-  public readonly errors?: APIErrorType; // Detailed error information
+  public readonly error?: APIErrorType; // Detailed error information
 
   // ------------------------------------------------------
   // Constructor: Initializes a new APIError instance
@@ -13,7 +13,7 @@ class APIError extends Error {
   constructor(
     statusCode: number = 500,
     message: string = "Internal Server Error",
-    errors?: APIErrorType,
+    error?: APIErrorType,
     stack?: string
   ) {
     // Call the parent constructor
@@ -21,7 +21,7 @@ class APIError extends Error {
     this.name = this.constructor.name;
     this.statusCode = statusCode;
     this.success = false;
-    this.errors = errors;
+    this.error = error;
 
     // Capture stack trace if not provided
     if (stack) {

@@ -2,6 +2,8 @@
 // 🧩 Types — Type definitions
 // ============================================================
 
+import type { Request, Response } from "express";
+
 // ------------------------------------------------------
 // Global{} — Extend the global namespace
 // ------------------------------------------------------
@@ -17,6 +19,14 @@ declare global {
   };
 
   type APIErrorType = string | ErrorInfo;
+
+  interface LogOptions {
+    req: Request;
+    res?: Response;
+    message?: string;
+    data?: unknown;
+    error?: unknown;
+  }
 }
 
 export {};
