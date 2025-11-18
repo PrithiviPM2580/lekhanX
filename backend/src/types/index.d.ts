@@ -8,23 +8,29 @@ import type { Request, Response } from "express";
 // Global{} — Extend the global namespace
 // ------------------------------------------------------
 declare global {
-	type APIErrorDetail = {
-		field?: string;
-		message?: string;
-	};
+  type APIErrorDetail = {
+    field?: string;
+    message?: string;
+  };
 
-	type APIErrorInfo = {
-		type: string;
-		details?: ErrorDetail[];
-	};
+  type APIErrorInfo = {
+    type: string;
+    details?: ErrorDetail[];
+  };
 
-	type APIErrorType = string | ErrorInfo;
+  type APIErrorType = string | ErrorInfo;
 
-	interface LogOptions {
-		req: Request;
-		res?: Response;
-		message?: string;
-		data?: unknown;
-		error?: unknown;
-	}
+  interface LogOptions {
+    req: Request;
+    res?: Response;
+    message?: string;
+    data?: unknown;
+    error?: unknown;
+  }
+
+  type RequestValidate = {
+    body?: ZodTypeAny;
+    query?: ZodTypeAny;
+    params?: ZodTypeAny;
+  };
 }
