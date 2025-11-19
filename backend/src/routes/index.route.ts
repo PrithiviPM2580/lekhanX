@@ -12,6 +12,7 @@ import {
   type NextFunction,
 } from "express";
 import mongoose from "mongoose";
+import authRoute from "@/routes/auth.route.js";
 
 const router: Router = Router();
 
@@ -80,6 +81,7 @@ router
 // ------------------------------------------------------
 // Index Route
 // ------------------------------------------------------
+router.use("/api/v1/auth", authRoute);
 
 // ------------------------------------------------------
 // Not Found Route
