@@ -4,6 +4,7 @@
 
 import express, { type Express } from "express";
 
+// Initialize the Express application
 const app: Express = express();
 
 // ------------------------------------------------------
