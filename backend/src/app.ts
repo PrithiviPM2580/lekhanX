@@ -1,18 +1,19 @@
 // ============================================================
 // 🧩 App — Main application setup and configuration
 // ============================================================
-import express, { type Express } from "express";
+
 import cookiePaeser from "cookie-parser";
+import express, { type Express } from "express";
 
 // Initialize the Express application
 const app: Express = express();
 
+import compression from "compression";
 // ------------------------------------------------------
 // Imports
 // ------------------------------------------------------
 import routes from "@/routes/index.route.js";
 import globalErrorHandlerMiddleware from "./middlewares/global-error-handler.middleware.js";
-import compression from "compression";
 import requestTimerMiddleware from "./middlewares/request-timer.middleware.js";
 
 // ------------------------------------------------------
