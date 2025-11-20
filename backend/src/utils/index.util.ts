@@ -112,3 +112,10 @@ export const generateMongooseId = (): Types.ObjectId => {
   // Generate and return a new Mongoose ObjectId
   return new Types.ObjectId();
 };
+
+// ------------------------------------------------------
+// getRefreshTokenExpiryDate() — Description:Returns the expiry date for refresh tokens
+// ------------------------------------------------------
+export const getRefreshTokenExpiryDate = (): Date => {
+  return new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days from now
+};

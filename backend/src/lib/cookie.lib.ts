@@ -46,3 +46,5 @@ const cookieLib = {
     res.clearCookie(name, { ...cookieLib.getOptions(), ...options });
   },
 };
+
+export default cookieLib;

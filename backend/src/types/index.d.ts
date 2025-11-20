@@ -2,6 +2,7 @@
 // 🧩 Types — Type definitions
 // ============================================================
 
+import { TokenDocument } from "@/models/token.model.ts";
 import { UserDocument } from "@/models/user.model.ts";
 import type { Request, Response } from "express";
 
@@ -44,5 +45,10 @@ declare global {
   type CreateUser = Pick<
     UserDocument,
     "_id" | "username" | "email" | "password" | "role"
+  >;
+
+  type CreateToken = Pick<
+    TokenDocument,
+    "_id" | "userId" | "token" | "userAgent" | "ip" | "expiresAt"
   >;
 }
